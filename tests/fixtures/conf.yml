@@ -1,0 +1,11 @@
+---
+repos:
+  - user: Appturbo
+    project: octopus
+  - user: Appturbo
+    project: iron-legion
+  - user: Appturbo
+    project: hawkeye
+
+queries:
+  sprint_tickets: project=SEED and sprint='Sprint 11'

@@ -1,0 +1,35 @@
+# -- metrics stack
+influxdb:
+  image: tutum/influxdb:latest
+  ports:
+    - 8083:8083
+    - 8086:8086
+  expose:
+    - 8090
+    - 8099
+  environment:
+    - PRE_CREATE_DB=agile
+
+# TODO load pre-configured dashboard
+grafana:
+  image: grafana/grafana:2.5.0
+  ports:
+    - 3000:3000
+
+lab:
+  build: .
+  stdin_open: true
+  tty: true
+  build: .
+  working_dir: /app
+  volumes:
+    - .:/app
+  links:
+    - influxdb
+  environment:
+    - INFLUXDB_DB=agile
+    - GITHUB_USER=
+    - GITHUB_PASS=
+    - JIRA_USER=
+    - JIRA_PASS=
+  command: python
