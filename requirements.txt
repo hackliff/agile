@@ -2,3 +2,4 @@ jira==1.0.3
 github3.py==0.9.4
 influxdb==2.10.0
 click==5.1
+PyYAML==3.11

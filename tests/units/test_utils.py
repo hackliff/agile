@@ -2,9 +2,13 @@
 # pylint: disable=unused-import
 # pylint: disable=import-error
 # pylint: disable=pointless-statement
+# pylint: disable=missing-docstring
+# pylint: disable=redefined-outer-name
 
 # Magic injection of sure methods.
 import sure
+import pytest
+import dateutil.parser
 
 import agile.utils
 
@@ -14,7 +18,32 @@ EXPECTED_QUERIES = {
 }
 
 
-def test_random_color_in_click_list():
-    conf = agile.utils.load_config(FIXTURE_CONF_FILE)
-    (conf['repos']).should.have.length_of(3)
-    (conf).should.have.key('queries').being.equal(EXPECTED_QUERIES)
+@pytest.fixture
+def conf_fd():
+    return open(FIXTURE_CONF_FILE, 'r')
+
+
+def test_load_yaml_configuration(conf_fd):
+    conf = agile.utils.load_config(conf_fd)
+    conf.should.be.a('dict')
+    (len(conf['repos'])).should.be.greater_than(0)
+    (conf).should.have.key('queries')
+    conf_fd.close()
+
+
+def test_utcnow():
+    now = agile.utils.utcnow()
+    date = dateutil.parser.parse(now)
+    date.tzname().should.equal('UTC')
+
+
+def test_cascade_find_value():
+    value = 'bar'
+    res = agile.utils.cascade({'foo': value}, ['whatever', 'foo'], 'default')
+    res.should.equal(value)
+
+
+def test_cascade_default_value():
+    default = 'bar'
+    res = agile.utils.cascade({}, ['foo'], default)
+    res.should.equal(default)

@@ -9,7 +9,8 @@ REQUIREMENTS = [
     'jira',
     'github3.py',
     'influxdb',
-    'click'
+    'click',
+    'PyYaml'
 ]
 
 

@@ -14,13 +14,19 @@ lint:
 	pylint --reports no agile tests
 
 test: warn_missing_linters
-	py.test tests
+	py.test --verbose --cov=agile tests/
 
 present_pylint=$(shell which pylint)
 present_pytest=$(shell which py.test)
 warn_missing_linters:
 	@test -n "$(present_pylint)" || echo "WARNING: pylint not installed."
 	@test -n "$(present_pytest)" || echo "WARNING: py.test not installed."
+
+coverage: test
+ifndef CODECOV_TOKEN
+	$(error codecov token not defined)
+endif
+	codecov --token=$(CODECOV_TOKEN)
 
 .PHONY: clean
 clean:
