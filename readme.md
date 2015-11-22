@@ -2,6 +2,14 @@
 
 [![Circle CI](https://circleci.com/gh/hackliff/agile.svg?style=svg)](https://circleci.com/gh/hackliff/agile)
 [![codecov.io](https://codecov.io/github/hackliff/agile/coverage.svg?branch=master)](https://codecov.io/github/hackliff/agile?branch=master)
+[![Code Health](https://landscape.io/github/hackliff/agile/master/landscape.svg?style=flat-square)](https://landscape.io/github/hackliff/agile/master)
+
+<h1 align="center">
+  <br>
+  <img width="600" src="http://simonjbeaumont.com/images/information-radiator/info-rad-screenshot.png">
+  <br>
+  <br>
+</h1>
 
 
 - [Github3 doc][gh3]

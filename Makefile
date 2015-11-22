@@ -6,13 +6,14 @@ all: install
 install:
 	python setup.py install
 
-dev-install:
+install.hack:
 	pip install -r requirements.txt
 	pip install -r dev-requirements.txt
 
 lint:
 	pylint --reports no agile tests
 
+# TODO lint !
 test: warn_missing_linters
 	py.test --verbose --cov=agile tests/
 

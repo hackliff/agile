@@ -2,6 +2,10 @@ machine:
     python:
       version: 3.4.3
 
+dependencies:
+  pre:
+    - make install.hack
+
 test:
   override:
     - make coverage
